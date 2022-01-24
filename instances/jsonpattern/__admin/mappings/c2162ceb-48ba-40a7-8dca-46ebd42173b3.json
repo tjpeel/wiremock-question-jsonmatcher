@@ -1,0 +1,65 @@
+{
+  "Guid": "c2162ceb-48ba-40a7-8dca-46ebd42173b3",
+  "Title": "",
+  "Request": {
+    "Path": {
+      "Matchers": [
+        {
+          "Name": "WildcardMatcher",
+          "Pattern": "/endpoint",
+          "IgnoreCase": false
+        }
+      ]
+    },
+    "Methods": [
+      "POST"
+    ],
+    "Headers": [
+      {
+        "Name": "Transfer-Encoding",
+        "Matchers": [
+          {
+            "Name": "WildcardMatcher",
+            "Pattern": "chunked",
+            "IgnoreCase": true
+          }
+        ]
+      },
+      {
+        "Name": "Content-Type",
+        "Matchers": [
+          {
+            "Name": "WildcardMatcher",
+            "Pattern": "application/json; charset=utf-8",
+            "IgnoreCase": true
+          }
+        ]
+      }
+    ],
+    "Body": {
+      "Matcher": {
+        "Name": "JsonMatcher",
+        "Pattern": {
+          "post1": "value 1",
+          "post2": "value 2"
+        },
+        "IgnoreCase": true
+      }
+    }
+  },
+  "Response": {
+    "StatusCode": 200,
+    "BodyAsJson": {
+      "data1": "the data1",
+      "data2": {
+        "id": "the id",
+        "mame": "the name"
+      }
+    },
+    "Headers": {
+      "Date": "Mon, 24 Jan 2022 13:25:51 GMT",
+      "Server": "Kestrel",
+      "Transfer-Encoding": "chunked"
+    }
+  }
+}
